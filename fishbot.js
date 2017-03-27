@@ -72,7 +72,7 @@ function sleep() {
 
 function connectbot(mins) {
   if (!isconnect) {
-    timer = setTimeout(function(){client.login(token)},60000*mins);
+    timer = setTimeout(function(){client.login(require('./token.json').token)},60000*mins);
   }
 }
 
