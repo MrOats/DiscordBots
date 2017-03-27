@@ -33,7 +33,7 @@ if (msg.channel.type != 'dm') {
 
 //Functions
 function connectbot(mins) {
-  timer = setTimeout(function(){client.login(require('./token.json').token);},60000*mins);
+  timer = setTimeout(function(){client.login(require('./token.json').token)},60000*mins);
 }
 
 
