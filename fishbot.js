@@ -6,7 +6,10 @@ var workname;
 var credits = 0;
 var timer;
 var isconnect = false;
-//Events
+
+// All the events & executing certain code when the event happens:
+
+// Client disconnect event.
 client.on('disconnect', () => {
   clearTimeout(timer);
   isconnect = false;
@@ -14,6 +17,7 @@ client.on('disconnect', () => {
   connectbot(2);
 });
 
+// If bot runs.
 client.on('ready', () => {
   console.log(`Fishbot 5000 is running!`);
   isconnect = true;
@@ -21,9 +25,10 @@ client.on('ready', () => {
   workname = client.user.username;
 });
 
+// Credit command.
 client.on('message', msg => {
   if (msg.author.id === tatsumaki_id) {
-//Check if credits
+  // Check if credits.
     if ( msg.content.includes(workname) && msg.content.includes("balance") ) {
 
       credits = updateCredits(msg.content);
@@ -40,7 +45,7 @@ client.on('message', msg => {
       }
 
     }
-//Check if you fished
+// Check if you fished.
     else if ( msg.content.includes(workname) && msg.content.includes("caught:") ) {
 
       credits-=10;
@@ -48,7 +53,7 @@ client.on('message', msg => {
       sleep();
 
     }
-//Check if command delay
+// Check if command delay.
     else if ( msg.content.includes(workname) && msg.content.includes("seconds") ) {
 
       console.log("Stupid Tatsumaki, hurry up.");
@@ -59,7 +64,7 @@ client.on('message', msg => {
   }
 });
 
-//Functions
+// The functions.
 
 function updateCredits(message) {
   var foundarr = message.match(/\d+/g);
@@ -90,6 +95,7 @@ function doFish() {
   }
 }
 
+// Loging in with bot token in token.json file.
 client.login(require('./token.json').token);
 
 process.on("unhandledRejection", err => {
